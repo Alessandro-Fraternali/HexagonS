@@ -1,0 +1,182 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(23, 23, 23);
+}
+
+.hexagoncontainer{
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  transform: translateY(80px);
+}
+
+.hexagon{
+  -webkit-box-flex: 0;
+  flex: 0 1 250px;
+  max-width: 250px;
+  height: 137.5px;
+  margin: 65.4px 12.5px 25px;
+  position: relative;
+  padding: 0.5em;
+  text-align: center;
+  z-index: 1;
+  box-shadow: 0px 0px 15px 0 rgba(0,0,0,0.1);
+  /* background-color: black; */
+  color: rgb(230, 110, 13);
+  /* filter: grayscale(100%); */
+}
+
+.hexagonbg{
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(100%);
+}
+
+.hexagontitle{
+  height: 100%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-boc-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-hypens: auto;
+  hyphens: auto;
+  word-break: break-word;
+  text-transform: uppercase;
+  color: rgb(230, 110, 13);
+  font-weight: 700;
+  font-size: 1.75em;
+  transition: opacity 350ms;
+}
+
+.hexagontitle > small
+{
+  font-weight: 300;
+  margin-top: 0.25em;
+}
+.hexagon::before,
+.hexagon::after{
+  content: " ";
+}
+.hexagon::before,
+.hexagon::after,
+.hexagonbg{
+  top: -50%;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  display: block;
+  position: absolute;
+  -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  z-index: -1;
+}
+.hexagon::before{
+  background: rgb(230, 110, 13);
+  transform: scale(1.030);
+}
+
+.hexagon::after{
+  background: black;
+  opacity: 0.7;
+  transition: opacity 350ms;
+  -webkit-transition: opacity 350ms;
+}
+
+.hexagon:hover{
+  cursor: pointer;
+}
+
+.hexagon:hover .hexagontitle{
+  opacity: 0;
+}
+
+.hexagon:hover .hexagonbg{
+  animation: activate-color 5s linear;
+}
+
+@keyframes activate-color{
+  12%{
+    filter: grayscale(0%);
+  }
+}
+
+.hexagon:hover::before{
+  background: rgb(230, 110, 13);
+}
+
+.hexagon:hover::after{
+  background: rgb(230, 110, 13);
+  opacity: 0;
+}
+
+.hidden{
+  display: none;
+  opacity: 0;
+  width: 250px;
+  margin: 0 12.5px;
+}
+
+/* responsive */
+
+@media (max-width: 550px)
+{
+  .hexagon
+  {
+    margin: 81.25px 25px;
+  }
+}
+
+
+@media (min-width: 550px) and (max-width: 825px)
+{
+  .hexagon:nth-child(3n)
+  {
+    margin-right: calc(50% - 125px);
+    margin-left: calc(50% - 125px);
+  }
+
+  .hidden:nth-child(3n + 5)
+  {
+    display: block;
+  }
+}
+
+
+@media (min-width: 825px) and (max-width: 1100px) {
+
+  .hexagon:nth-child(5n + 4)
+  {
+    margin-left: calc(50% - 275px);
+  }
+
+  .hexagon:nth-child(5n + 5)
+  {
+    margin-right: calc(50% - 275px);
+  }
+
+  .hidden:nth-child(5n),
+  .hidden:nth-child(5n + 3)
+  {
+    display: block;
+  }
+}
