@@ -46,7 +46,7 @@ body{
 .hexagonbg{
   object-fit: cover;
   object-position: center;
-  filter: grayscale(100%);
+  filter: grayscale(50%);
 }
 
 .hexagontitle{
@@ -91,8 +91,7 @@ body{
   z-index: -1;
 }
 .hexagon::before{
-  background: rgb(230, 110, 13);
-  transform: scale(1.030);
+  background: black;
 }
 
 .hexagon::after{
@@ -115,17 +114,29 @@ body{
 }
 
 @keyframes activate-color{
-  12%{
+  50%{
     filter: grayscale(0%);
   }
 }
 
+.hexagon:hover .hexagon::after{
+}
+
+
 .hexagon:hover::before{
-  background: rgb(230, 110, 13);
+  /* background: rgb(230, 110, 13); */
+  transform: scale(1.030);
+  animation: girotondo 1.5s linear infinite;
+  background: rgb(236, 106, 0);
+}
+
+@keyframes girotondo {
+  50% {
+    transform: rotate(-360deg);
+  }
 }
 
 .hexagon:hover::after{
-  background: rgb(230, 110, 13);
   opacity: 0;
 }
 
